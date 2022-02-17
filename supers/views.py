@@ -26,6 +26,16 @@ def supers_list(request):
         serializers.save()
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
+# @api_view(['GET'])
+# def supertypes_list(request):
+
+#     supertype_param = request.query_params.get('type')
+#     supers = Super.objects.all()
+#     if supertype_param:
+#         supers = supers.filter(super_type_id__type=supertype_param)
+#         serializers = SuperSerializer(supers, many = True)
+#     return Response(serializers.data, status=status.HTTP_200_OK)
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def supers_detail(request, pk): #this pk allows for input

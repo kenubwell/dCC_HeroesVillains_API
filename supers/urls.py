@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path('', views.supers_list),
+    #path ('../?', views.supertypes_list),
     path('<int:pk>/', views.supers_detail), #the int:pk is stating that the pk value has to be an integer
 
 ]

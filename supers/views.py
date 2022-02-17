@@ -4,15 +4,22 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import SuperSerializer
 from .models import Super
+from .models import SuperTypes
 from supers import serializers
 
 @api_view(['GET', 'POST'])
 def supers_list(request):
     
     if request.method == 'GET':
-        supers = Super.objects.all()
-        serializers = SuperSerializer(supers, many=True) #this is going to take our car table and convert to json
-        return Response(serializers.data, status=status.HTTP_200_OK)
+        super_types = SuperTypes.objects.all()
+        custom_response_dictionary = {}
+        for supertype in super_types:
+            supers = Super.objects.filter(super_type_id=supertype.id)
+            super_serializer = SuperSerializer(supers, many=True)
+            custom_response_dictionary[supertype.type] = {
+                "supers": super_serializer.data
+            }        
+        return Response(custom_response_dictionary)
     elif request.method == 'POST':
         serializers = SuperSerializer(data=request.data)
         serializers.is_valid(raise_exception=True)  #this validates that API user input is true or accurate to the database

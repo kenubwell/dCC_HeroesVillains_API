@@ -23,7 +23,7 @@ def supers_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def supers_detail(request, pk): #this pk allows for input
 
-    super = get_object_or_404(Car, pk=pk)  #since imported django shortcut we can use this function to check for errors. Just have to enter (Model, Value)
+    super = get_object_or_404(Super, pk=pk)  #since imported django shortcut we can use this function to check for errors. Just have to enter (Model, Value)
     if request.method == 'GET':
         serializer = SuperSerializer(super)
         return Response(serializer.data)  

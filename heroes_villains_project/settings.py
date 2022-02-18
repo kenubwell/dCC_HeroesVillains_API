@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'supers',
     'super_types',
+    'battles',
 ]
 
 MIDDLEWARE = [

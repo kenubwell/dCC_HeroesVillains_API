@@ -12,30 +12,26 @@ def supers_list(request):
     
     if request.method == 'GET':
         super_types = SuperTypes.objects.all()
-        custom_response_dictionary = {}
-        for supertype in super_types:
-            supers = Super.objects.filter(super_type_id=supertype.id)
-            super_serializer = SuperSerializer(supers, many=True)
-            custom_response_dictionary[supertype.type] = {
-                "supers": super_serializer.data
-            }        
-        return Response(custom_response_dictionary)
+        supertype_param = request.query_params.get('type')  
+        if supertype_param:
+            supers = Super.objects.all() 
+            supers = supers.filter(super_type_id__type=supertype_param)
+            serializers = SuperSerializer(supers, many = True)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        elif super_types:
+            custom_response_dictionary = {}
+            for supertype in super_types:
+                supers = Super.objects.filter(super_type_id=supertype.id)
+                super_serializer = SuperSerializer(supers, many=True)
+                custom_response_dictionary[supertype.type] = {
+                    "supers": super_serializer.data
+                }        
+            return Response(custom_response_dictionary)
     elif request.method == 'POST':
         serializers = SuperSerializer(data=request.data)
-        serializers.is_valid(raise_exception=True)  #this validates that API user input is true or accurate to the database
+        serializers.is_valid(raise_exception=True)  
         serializers.save()
         return Response(serializers.data, status=status.HTTP_201_CREATED)
-
-# @api_view(['GET'])
-# def supertypes_list(request):
-
-#     supertype_param = request.query_params.get('type')
-#     supers = Super.objects.all()
-#     if supertype_param:
-#         supers = supers.filter(super_type_id__type=supertype_param)
-#         serializers = SuperSerializer(supers, many = True)
-#     return Response(serializers.data, status=status.HTTP_200_OK)
-
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def supers_detail(request, pk): #this pk allows for input

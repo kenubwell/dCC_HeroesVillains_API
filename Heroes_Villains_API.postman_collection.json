@@ -359,6 +359,157 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Battles",
+			"item": [
+				{
+					"name": "Get_All_Battles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/supers/battles/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"supers",
+								"battles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Battle_By_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/supers/battles/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"supers",
+								"battles",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Battle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"battle_date\": \"2022-02-26T11:30:00Z\",\r\n    \"super_one_id\": 5,\r\n    \"super_two_id\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/supers/battles/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"supers",
+								"battles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Battle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"battle_date\": \"2022-02-22T10:30:00Z\",\r\n    \"super_one_id\": 1,\r\n    \"super_two_id\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/supers/battles/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"supers",
+								"battles",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Battle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/supers/battles/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"supers",
+								"battles",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

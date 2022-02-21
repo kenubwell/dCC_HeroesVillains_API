@@ -11,7 +11,7 @@ def supertypes_list(request):
 
     if request.method == 'GET':
         stypes = SuperTypes.objects.all()
-        serializers = SupertypeSerializer(stypes, many=True) #this is going to take our product table and convert to json
+        serializers = SupertypeSerializer(stypes, many=True) 
         return Response(serializers.data, status=status.HTTP_200_OK)
     elif request.method == 'POST':
         serializers = SupertypeSerializer(data=request.data)
@@ -20,14 +20,14 @@ def supertypes_list(request):
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def supertypes_detail(request, pk): #this pk allows for input for the product id
+def supertypes_detail(request, pk): 
 
     stype = get_object_or_404(SuperTypes, pk=pk)  #since I imported django shortcut (above) we can use this function to check for errors. Just have to enter (Model, Value)
     if request.method == 'GET':
         serializer = SupertypeSerializer(stype)
         return Response(serializer.data, status=status.HTTP_200_OK)  
     elif request.method == 'PUT':
-        serializer = SupertypeSerializer(stype, data=request.data) #this compares current product data and takes in requested data from user
+        serializer = SupertypeSerializer(stype, data=request.data) 
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)

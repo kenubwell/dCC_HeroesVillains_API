@@ -17,7 +17,7 @@ def battles_list(request):
         count = 1
         for battle in battles:
             battlers = Battle.objects.filter(id=battle.id)
-            serializers = BattleSerializer(battlers, many=True) #this is going to take our product table and convert to json
+            serializers = BattleSerializer(battlers, many=True) 
             custom_response_dictionary[battle.id] = {
                 f"Battle {count}": serializers.data
             }
@@ -30,14 +30,14 @@ def battles_list(request):
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def battles_detail(request, pk): #this pk allows for input for the product id
+def battles_detail(request, pk): 
 
-    battle = get_object_or_404(Battle, pk=pk)  #since I imported django shortcut (above) we can use this function to check for errors. Just have to enter (Model, Value)
+    battle = get_object_or_404(Battle, pk=pk)  
     if request.method == 'GET':
         serializer = BattleSerializer(battle)
         return Response(serializer.data, status=status.HTTP_200_OK)  
     elif request.method == 'PUT':
-        serializer = BattleSerializer(battle, data=request.data) #this compares current product data and takes in requested data from user
+        serializer = BattleSerializer(battle, data=request.data) 
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)

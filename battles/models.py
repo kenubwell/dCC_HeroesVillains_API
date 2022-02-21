@@ -1,3 +1,6 @@
+#BONUS - You will need to create a "battle" app and a Battle model. The Battle model will be a junction table and have the following properties:
+# super_one - ForeignKey (to super table) | super_two - ForeignKey (to super table) | battle_date - DateTimeField
+
 from django.db import models
 from super_types.models import SuperTypes
 from supers.models import Super
